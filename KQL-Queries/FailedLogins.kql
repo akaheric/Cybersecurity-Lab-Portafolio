@@ -1,16 +1,17 @@
-// Detects multiple failed sign-ins from the same IP address within 15 minutes
+// Failed Login Detection Query
+//
+// Description:
+// Detects IP addresses with multiple failed sign-in attempts over a 15-minute period.
+// Useful for identifying brute-force attacks or misconfigured login scripts.
+//
+// Use case:
+// Can help trigger alerts in Microsoft Sentinel to identify potential account compromise attempts.
+//
+// Data source: Azure Active Directory SigninLogs
 
 SigninLogs
-| where ResultType != 0
-| summarize FailedAttempts=count() by IPAddress, bin(TimeGenerated, 15m)
-| where FailedAttempts > 5
-| sort by FailedAttempts desc
-
-
-
-// What it does:
-//	•	Looks at the SigninLogs table
-//	•	Filters out successful logins (ResultType = 0 is success)
-//	•	Groups failed attempts by IP and 15-minute window
-//	•	Shows only IPs with more than 5 failed attempts
-//	•	Sorts them to find the biggest offenders first
+| where ResultType != 0 // Exclude successful sign-ins (ResultType 0 = success)
+| summarize FailedAttempts = count() by IPAddress, bin(TimeGenerated, 15m)
+// Group events into 15-minute time windows, count the number of failed attempts per IP
+| where FailedAttempts > 5 // Only show IPs with more than 5 failed attempts
+| sort by FailedAttempts desc // Sort results to show the most aggressive IPs at the top
