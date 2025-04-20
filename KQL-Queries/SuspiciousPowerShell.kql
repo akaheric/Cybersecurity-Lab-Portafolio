@@ -1,0 +1,30 @@
+// Suspicious PowerShell Detection Query
+//
+// Description:
+// Detects potentially malicious PowerShell usage by identifying known keywords
+// associated with obfuscated or remotely downloaded code.
+//
+// Use case:
+// Useful for detecting PowerShell-based attacks in early stages,
+// like script-based malware or reconnaissance tools.
+//
+// Data source: Microsoft Defender for Endpoint (via DeviceProcessEvents)
+
+
+DeviceProcessEvents
+| where FileName =~ "powershell.exe" // Only look at PowerShell processes
+| where ProcessCommandLine has_any ( // Look for suspicious keywords in the command line
+    "EncodedCommand",               // Base64 encoded PowerShell
+    "IEX",                          // Invoke-Expression (often used to run downloaded code)
+    "Invoke-WebRequest",           // Used to download scripts from the internet
+    "DownloadString",              // Another download technique
+    "New-Object",                  // Often used to create COM objects for exploitation
+    "Net.WebClient"                // Used to access external resources
+)
+| project 
+    Timestamp = TimeGenerated,     // When the event happened
+    DeviceName,                    // Name of the affected device
+    InitiatingProcessAccountName, // Who ran the command
+    ProcessCommandLine,           // The full PowerShell command
+    FileName                      // The process name (should be powershell.exe)
+| sort by Timestamp desc          // Sort by most recent events first
