@@ -16,8 +16,8 @@ Currently levelling up my skills with **SC-200** and building this public repo t
 ### 1. **KQL Queries**
 Custom queries built for real-world threat detection scenarios using Microsoft Sentinel.
 
-- [Failed Login Detection](./KQL-Queries/FailedLogins.kql)
-- [Suspicious PowerShell Use](./KQL-Queries/SuspiciousPowerShell.kql)
+- [Failed Login Detection]()
+- [Suspicious PowerShell Use]()
 - More coming soon...
 
 ### 2. **Labs & Notes**
