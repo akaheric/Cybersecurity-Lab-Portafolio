@@ -1,0 +1,16 @@
+// Detects multiple failed sign-ins from the same IP address within 15 minutes
+
+SigninLogs
+| where ResultType != 0
+| summarize FailedAttempts=count() by IPAddress, bin(TimeGenerated, 15m)
+| where FailedAttempts > 5
+| sort by FailedAttempts desc
+
+
+
+// What it does:
+//	•	Looks at the SigninLogs table
+//	•	Filters out successful logins (ResultType = 0 is success)
+//	•	Groups failed attempts by IP and 15-minute window
+//	•	Shows only IPs with more than 5 failed attempts
+//	•	Sorts them to find the biggest offenders first
