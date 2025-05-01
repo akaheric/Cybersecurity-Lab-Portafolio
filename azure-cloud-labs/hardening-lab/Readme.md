@@ -9,7 +9,7 @@ This lab simulates a real-world security detection scenario by hardening an Azur
 - Ingest logs via Log Analytics
 - Detect failed SSH login attempts using KQL
 - Trigger alerts with Azure Monitor
-- Control costs with alert rule optimization
+- Alert rule optimization
 
 ---
 
