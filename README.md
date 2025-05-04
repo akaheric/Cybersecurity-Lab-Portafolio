@@ -16,7 +16,7 @@ Each lab focuses on applying—not just understanding—concepts like:
 
 ## 🧪 Labs Included
 
-### 🔹 [01. Cloud Hardening Lab](./01-cloud-hardening-lab/)
+### 🔹 [01. Cloud Hardening Lab](./azure-cloud-labs/01-cloud-hardening-lab)
 **Goal:** Lock down access to a VM using JIT, NSGs, and Azure Monitor  
 **Skills:** Defender for Cloud, Log Analytics, Alerts, JIT, NSG Rules
 
