@@ -57,12 +57,15 @@ This lab is designed to show how access control, role assignments, and visibilit
 
 ---
 
-## ✅ Learning Outcomes
+## ✅ Real Lab Findings
 
-- Understand how RBAC roles can be scoped and customized
-- Learn how PIM adds security to powerful roles
-- Gain visibility into access with audit logs
-- Build a repeatable, least-privilege access model
+- **Custom role successfully limited user access** to a single Key Vault, enforcing read-only access to secrets.
+- The **Contributor role was manually assigned** to simulate elevated access in place of PIM.
+- After a short delay, **User2 could create, update, and delete secrets**, confirming scoped access worked.
+- **Diagnostic settings and Log Analytics** were configured correctly.
+- While some identity fields (like `Identity` and `CallerIpAddress`) were not present, the `Caller` field allowed access tracking.
+- **KQL queries** confirmed operations like `SecretGet` and `SecretSet`.
+
 
 ---
 
