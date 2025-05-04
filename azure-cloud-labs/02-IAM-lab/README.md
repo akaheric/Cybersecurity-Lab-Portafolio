@@ -11,7 +11,7 @@ This lab is designed to show how access control, role assignments, and visibilit
 
 - Practice **least privilege** by creating custom roles
 - Apply **RBAC** at different scopes: resource, RG, and subscription
-- Use **Azure AD Privileged Identity Management (PIM)** for just-in-time elevation
+- Use **Azure AD Privileged Identity Management (PIM)** for just-in-time elevation (simulated manually)
 - Track **who did what** using Activity Logs and Azure Monitor
 - Show how "access control" is more than assigning Reader to everyone 🙃
 
@@ -22,7 +22,7 @@ This lab is designed to show how access control, role assignments, and visibilit
 - A protected resource (Key Vault or Storage Account)
 - Azure AD users or groups
 - Custom RBAC Role (read-only, scoped to 1 resource)
-- PIM-enabled admin role (contributor, eligible only)
+- Manually elevated Contributor role (simulating PIM, PIM not available due subscription and cost limitation)
 - Azure Monitor + Activity Logs enabled for auditing
 
 ![Architecture Diagram](./architecture/iam-lab-diagram.drawio.png)
@@ -46,7 +46,7 @@ This lab is designed to show how access control, role assignments, and visibilit
 ### 3. Test Access
 
 - Log in as the custom role user → try to view/modify the resource
-- Log in as the PIM user → elevate access → verify time-limited privileges
+- Log in as the PIM user → elevate access → verify privileges
 - Try over-assigning and review what the user can/can’t do
 
 ### 4. Enable Logging
@@ -66,20 +66,6 @@ This lab is designed to show how access control, role assignments, and visibilit
 
 ---
 
-## 📁 Folder Contents
-
-```
-02-iam-lab/
-├── architecture/
-│   └── iam-lab-diagram.drawio.png
-├── custom-role/
-│   └── reader-keyvault.json
-├── docs/
-│   └── Azure_IAM_Lab_Report_Template.docx
-└── README.md
-```
-
----
 
 ## 💬 Share Your Results
 
